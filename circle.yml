@@ -46,7 +46,7 @@ dependencies:
     post:
 
         # Install awscli
-        - pip install awscli
+        - sudo pip install awscli
 
 
 # -----------------------------------
@@ -58,4 +58,4 @@ deployment:
     production:
         branch: master
         commands:
-            - '/home/ubuntu/virtualenvs/venv-2.7.5/bin/aws s3 --region eu-west-1 cp --cache-control "max-age=1800" track.js s3://itsy.li/track.js'
+            - 'aws s3 --region eu-west-1 cp --cache-control "max-age=1800" track.js s3://itsy.li/track.js'
