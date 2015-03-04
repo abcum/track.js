@@ -45,10 +45,7 @@ dependencies:
 
     post:
 
-        # Update npm
-        - npm install
-
-        # Install aws cli
+        # Install awscli
         - pip install awscli
 
 
