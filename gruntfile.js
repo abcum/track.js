@@ -5,7 +5,17 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 
 		// ++++++++++++++++++++++++++++++++++++++++++++++++++
-		// JS
+		// CLEAN
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		clean: {
+
+			all: ['track.js'],
+
+		},
+
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++
+		// CONCAT
 		// ++++++++++++++++++++++++++++++++++++++++++++++++++
 
 		concatinclude: {
@@ -19,7 +29,7 @@ module.exports = function(grunt) {
 		},
 
 		// ++++++++++++++++++++++++++++++++++++++++++++++++++
-		// Uglify
+		// UGLIFY
 		// ++++++++++++++++++++++++++++++++++++++++++++++++++
 
 		uglify: {
@@ -38,6 +48,19 @@ module.exports = function(grunt) {
 				}]
 			}
 
+		},
+
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++
+		// JSHint
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		jshint: {
+
+			files: ['gruntfile.js'],
+			options: {
+				'-W099': true,
+			}
+
 		}
 
 	});
@@ -46,16 +69,23 @@ module.exports = function(grunt) {
 	// Load NPMs
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++
 
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-concat-include');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++
 	// Tasks
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++
 
-	grunt.registerTask('default', [
-        'concatinclude:track',
-        'uglify:track'
+	grunt.registerTask('test', [
+		'jshint',
+	]);
+
+	grunt.registerTask('deploy', [
+		'clean',
+        'concatinclude',
+        'uglify'
 	]);
 
 };
