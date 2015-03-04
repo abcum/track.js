@@ -1,0 +1,70 @@
+# -----------------------------------
+# Global options
+# -----------------------------------
+
+general:
+
+    branches:
+
+        only:
+            - master
+
+# -----------------------------------
+# Customize test machine
+# -----------------------------------
+
+machine:
+
+    # Set the timezone
+    timezone:
+        UTC
+
+    # Version of php to use
+    php:
+        version: 5.4.21
+
+    # Version of node to use
+    node:
+        version: 0.11.13
+
+    # Version of python to use
+    python:
+        version: 3.4.1
+
+# -----------------------------------
+# Customize dependencies
+# -----------------------------------
+
+dependencies:
+
+    pre:
+
+        # Install grunt
+        - npm install -g grunt-cli
+
+
+    post:
+
+        # Update npm
+        - npm install
+
+        # Install aws cli
+        - pip install awscli
+
+
+test:
+    post:
+        - grunt
+
+# -----------------------------------
+# Customize deployment
+# -----------------------------------
+
+deployment:
+
+    production:
+        branch: master
+        commands:
+            - grunt deploy:test:
+                timeout: 300
+            - '/home/ubuntu/virtualenvs/venv-2.7.5/bin/aws s3 --region eu-west-1 cp --cache-control "max-age=1800" track.js s3://itsy.li/track.js'
