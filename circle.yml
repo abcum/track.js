@@ -55,7 +55,8 @@ dependencies:
 
 deployment:
 
-    production:
+    master:
         branch: master
         commands:
-            - 'aws s3 --region eu-west-1 cp --cache-control "max-age=1800" track.js s3://itsy.li/track.js'
+            - grunt
+            - aws s3 --region eu-west-1 cp --cache-control "max-age=1800" track.js s3://itsy.li/track.js
