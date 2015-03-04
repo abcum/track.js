@@ -58,6 +58,4 @@ deployment:
     production:
         branch: master
         commands:
-            - grunt deploy:test:
-                timeout: 300
             - '/home/ubuntu/virtualenvs/venv-2.7.5/bin/aws s3 --region eu-west-1 cp --cache-control "max-age=1800" track.js s3://itsy.li/track.js'
