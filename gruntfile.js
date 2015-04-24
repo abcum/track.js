@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 
 		uglify: {
 
-            options: {
+			options: {
 				wrap: true,
 				report: 'min',
 				compress: true,
@@ -84,8 +84,8 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('deploy', [
 		'clean',
-        'concatinclude',
-        'uglify'
+		'concatinclude',
+		'uglify'
 	]);
 
 };
